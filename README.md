@@ -5,8 +5,6 @@ This repository contains the prototype MaxSAT solvers used in the paper:
 > Ilario Bonacina, Jordi Levy, and Ion Mikel Liberal.  
 > **Beyond Core-Guided MaxSAT**.  
 > *29th International Conference on Theory and Applications of Satisfiability Testing (SAT 2026)*.  
-> Leibniz International Proceedings in Informatics (LIPIcs), Article No. 8, pp. 8:1--8:18, 2026.  
-> DOI: `10.4230/LIPIcs.SAT.2026.8`.
 
 The paper introduces the **Comparator Calculus (CC)**, a proof system for MaxSAT designed to model the inferential behaviour of SAT-based and core-guided MaxSAT solvers. Inspired by this calculus, the paper studies two main families of algorithms:
 
