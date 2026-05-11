@@ -104,6 +104,30 @@ Options:
 - `-s`, `--seed`: random seed.
 - `-v`, `--verbose`: prints additional information.
 
+
+### `OLL.py`: OLL-style solver
+
+This file implements an OLL-style core-guided MaxSAT solver. After extracting an unsatisfiable core, it increases the lower bound by the minimum weight in the core, splits weights when necessary, and adds a sorting-network construction over the core literals. All sorting-network outputs except the first one are kept as new soft formulas with the extracted weight.
+
+Main class:
+
+- `OLL`: inherits from `MaxSATsolver`.
+
+Example:
+
+```bash
+python3 OLL.py instance.wcnf
+```
+
+Options:
+
+```bash
+python3 OLL.py instance.wcnf -i
+python3 OLL.py instance.wcnf -s 1 -v
+```
+
+The option `-i` activates incremental mode, keeping learned clauses between SAT calls.
+
 ### `FuMalik.py`: Fu&Malik baseline
 
 This file implements a Fu&Malik-style core-guided MaxSAT solver using a sorting-network encoding of the at-most-one constraint over relaxation variables.
@@ -234,6 +258,13 @@ Run core-guided CSat with heuristic 2:
 python3 comp.py php_25_5.wcnf -H 2 -c
 ```
 
+
+Run the OLL-style solver:
+
+```bash
+python3 OLL.py php_25_5.wcnf
+```
+
 Run the Fu&Malik baseline:
 
 ```bash
@@ -267,6 +298,7 @@ The reported `Time` is the accumulated CPU time spent inside SAT solver calls, n
 - The code assumes that all Python files are in the same directory.
 - The implementations use OptiLog's interface to Glucose 4.1.
 - `comp.py` uses `bitarray` to store and update the matrix of assignments efficiently.
+- `OLL.py` uses the sorting-network encoding from `cardinality.py` to process cores.
 - `FuMalik.py` and `FuMalikSymBreak.py` intentionally reject incremental mode in their current implementation.
 - The code is a compact research prototype rather than a polished MaxSAT competition solver.
 
